@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Create Page{% endblock %}
+
+{% block header %}Customer Create{% endblock %}
+
+{% block content %}
+<form action="{% url 'customers:create' %}" method="post">
+    {% csrf_token %}
+    Name:<input type="text" name="name" id="name"><br>
+    Street Address:<input type="text" name="street_address"><br>
+    Zip Code:<input type="text" name="postal_code"><br>
+    Amount:<input type="text" name="balance"><br>
+    
+    <!-- weekly_pickup = models.CharField(default=True, null=True, max_length=50)
+    one_time_pickup = models.DateField(default=django.utils.timezone.now, null=True)
+    suspend_start = models.DateField(default=django.utils.timezone.now, null=True)
+    suspend_end = models.DateField(default=django.utils.timezone.now, null=True) -->
+    Customer:
+        <select name="customer" id="customer">
+            {% for customer in all_customers %}
+            <option value="{{customer.id}}">{{team}}</option>
+            {% endfor %}
+        </select>
+    <input type="submit" value="Add new!">
+</form>
+{% endblock %}
